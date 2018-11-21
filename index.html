@@ -1,46 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>Favorite Animals</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    <title>Gipftastic App</title>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Link to Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
 
 <body>
+
     <div class="container">
-        <h1>Animal Search</h1>
-        
-        <!-- Rendered Buttons will get Dumped Here  -->
-        <div id="buttons-view"></div>
+        <div class="jumbotron">
+            <h1>Its Time To Get Giphy!!</h1>
+        </div>
 
-        <form id="animal-form">
-            <label for="animal-input">Add an Animal!</label>
-            <input type="text" id="animal-input" class= "gif-button">
-            <br>
-            <input id="add-animal" type="submit" value="Add an Animal!">
-            <div class="button-container">
-                <button class="gif-button" data-name="cats">Cats</button>
-                <button class="gif-button" data-name="dogs">Dogs</button>
-                <button class="gif-button" data-name="lizards">Lizards</button>
+        <div class="row">
+            <div class="col-md-12" id="display-buttons"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form id="form">
+                    <label for="user-input">Enter a Term and Watch the Magic!</label><br>
+                    <input type="text" id="user-input">
+                    <input id="submitPress" type="submit" value="Submit" class="btn btn-default">
+                </form>
             </div>
-            <div id="gif-container"></div>
+        </div>
 
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-                crossorigin="anonymous"></script>
-            <!-- Optional JavaScript -->
-            <script src="assets/js/app.js"></script>
+        <div class="row">
+            <div class="col-md-12" id="display-images"></div>
+        </div>
+
+
+    </div>
+    <!-- Link to JS -->
+    <script src="assets/js/app.js"></script>
 </body>
 
 </html>

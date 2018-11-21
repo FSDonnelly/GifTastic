@@ -1,116 +1,87 @@
-// Initial array of animals
-var animals = ["sea turtle", "gorrila", "giraffe", "lion"]
+$(document).ready(function(){
 
+  var displayedButtons = ["sea turtle", "gorrila", "giraffe", "lion"];
 
-// make a function that make a request to giphy
-function makeAPICallToGiphy(queryItem) {
-    var queryUrl = "https://api.giphy.com/v1/gifs/search";
-    var apiKey = "r4kLq0ZCkfyI1sAFvi9gjuywoNSDkGbq";
-    var params = "?" + $.param({
-        api_key: apiKey,
-        q: queryItem,
-        limit: 10,
-        offset: 0,
-        rating: "G",
-        lang: "en"
-    });
-    
-    var queryUrlWithParams = queryUrl + params;
-    
-    console.log("Our request url is " + queryUrlWithParams);
-    
-    // make a request to the giphy search API
-    $.ajax({
-        url: queryUrlWithParams,
-        method: "GET"
-    }).then(function(response){
-        var imagesArr = response.data;
-        console.log(imagesArr);
-        // $("#gif-container").empty();
-        // take all the fixed_height images from the response 
-        // and display on the page
-        for(var i = 0; i < imagesArr.length; i++) {
-            var img = $("<img>");
-            img.addClass("gif-image");
-            img.attr("src", imagesArr[i].images.fixed_height_still.url);
-            img.attr("data-still", imagesArr[i].images.fixed_height_still.url);
-            img.attr("data-animate", imagesArr[i].images.fixed_height.url);
-            img.attr("data-state", "still");
-            $("#gif-container").prepend(img);
-            
-        }
-    });
-}
+  function displayImg(){
 
-// when I click on one 
-// of the gifs it will go from still to animate 
-// and from animate to still
-$(document).on("click", ".gif-image", function(e) {
-    e.preventDefault();
-    var state = $(this).attr("data-state");
-    var animateUrl = $(this).attr("data-animate");
-    var stillUrl = $(this).attr("data-still");
-    if(state === "still") {
-        // lets animate the img
-        // switch the src attribute to the value of data-animate
-        $(this).attr("src", animateUrl);
-        // set the data-state value to "animate"
-        $(this).attr("data-state", "animate");
-       
-    } else {
-        // lets make it still
-        // switch the src attribute to the value of data-still
-        $(this).attr("src", stillUrl);
-        // set the data-state value to "still"
-        $(this).attr("data-state", "still");
-    }
-});
+      $("#display-images").empty();
+      var input = $(this).attr("data-name");
+      var limit = 10;
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + input + "&limit=" + limit + "&api_key=r4kLq0ZCkfyI1sAFvi9gjuywoNSDkGbq";   
 
-makeAPICallToGiphy("");
+      $.ajax({
+          url: queryURL, 
+          method: "GET"
+      }).done(function(response) {
 
-$(document).on("click", ".gif-button", function(e){
-    e.preventDefault();
-    var btnValue = $(this).attr("data-name");
-    makeAPICallToGiphy(btnValue);
-});
-// Function for displaying animal data
-function renderButtons() {
+          for(var i = 0; i < limit; i++) {    
 
-  // Deleting the animals prior to adding new animals
-  // (this is necessary otherwise you will have repeat buttons)
-  $("#buttons-view").empty();
-  
-  // Looping through the array of animals
-  for (var i = 0; i < animals.length; i++) {
-  
-   // Then dynamicaly generating buttons for each animal in the array
-   // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-   var a = $("<button>");
-   // Adding a class of animal-btn to our button
-   a.addClass("animal-btn");
-   // Adding a data-attribute
-   a.attr("data-name", animals[i]);
-   // Providing the initial button text
-   a.text(animals[i]);
-   // Adding the button to the buttons-view div
-   $("#buttons-view").append(a);
+              var displayDiv = $("<div>");
+              displayDiv.addClass("holder");
+          
+              var image = $("<img>");
+              image.attr("src", response.data[i].images.original_still.url);
+              image.attr("data-still", response.data[i].images.original_still.url);
+              image.attr("data-animate", response.data[i].images.original.url);
+              image.attr("data-state", "still");
+              image.attr("class", "gif");
+              displayDiv.append(image);
+
+              var rating = response.data[i].rating;
+              console.log(response);
+              var pRating = $("<p>").text("Rating: " + rating);
+              displayDiv.append(pRating)
+
+              $("#display-images").append(displayDiv);
+          }
+      });
   }
+
+  function renderButtons(){ 
+
+      $("#display-buttons").empty();
+
+      for (var i = 0; i < displayedButtons.length; i++){
+
+          var newButton = $("<button>") 
+          newButton.attr("class", "btn btn-default");
+          newButton.attr("id", "input")  
+          newButton.attr("data-name", displayedButtons[i]); 
+          newButton.text(displayedButtons[i]); 
+          $("#display-buttons").append(newButton); 
+      }
   }
-  // This function handles events where a animal button is clicked
-$("#add-animal").on("click", function(event) {
-  event.preventDefault();
-  // This line grabs the input from the textbox
-  var animal = $("#animal-input").val().trim();
-  
-  // Adding animal from the textbox to our array
-  animals.push(animal);
-  
-  // Calling renderButtons which handles the processing of our animal array
+
+  function imageChangeState() {          
+
+      var state = $(this).attr("data-state");
+      var animateImage = $(this).attr("data-animate");
+      var stillImage = $(this).attr("data-still");
+
+      if(state == "still") {
+          $(this).attr("src", animateImage);
+          $(this).attr("data-state", "animate");
+      }
+
+      else if(state == "animate") {
+          $(this).attr("src", stillImage);
+          $(this).attr("data-state", "still");
+      }   
+  }
+
+  $("#submitPress").on("click", function(){
+
+      var input = $("#user-input").val().trim();
+      form.reset();
+      displayedButtons.push(input);
+              
+      renderButtons();
+
+      return false;
+  })
+
   renderButtons();
-  });
-  
-  // Adding a click event listener to all elements with a class of "animal-btn"
-  $(document).on("click", ".animal-btn", makeAPICallToGiphy);
-  
-  // Calling the renderButtons function to display the intial buttons
-  renderButtons();
+
+  $(document).on("click", "#input", displayImg);
+  $(document).on("click", ".gif", imageChangeState);
+});

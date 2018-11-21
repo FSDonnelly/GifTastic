@@ -1,5 +1,7 @@
 body {
   box-sizing: border-box;
+  background: lightgreen;
+  text-align: center;
 }
 
 
@@ -11,9 +13,13 @@ input {
   margin: 10px;
 }
 
-.gif-image {
+img {
   width: 200px;
   height: 200px;
   border: 2px solid black;
   border-radius: 8px;
+}
+
+.holder {
+  float: left;
 }
