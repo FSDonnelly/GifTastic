@@ -16,32 +16,31 @@
 <body>
     <div class="container">
         <h1>Animal Search</h1>
-
+        
         <!-- Rendered Buttons will get Dumped Here  -->
         <div id="buttons-view"></div>
 
         <form id="animal-form">
             <label for="animal-input">Add an Animal!</label>
-            <input type="text" id="animal-input">
+            <input type="text" id="animal-input" class= "gif-button">
             <br>
-
-            <!-- Button triggers new animal to be added -->
             <input id="add-animal" type="submit" value="Add an Animal!">
-        </form>
+            <div class="button-container">
+                <button class="gif-button" data-name="cats">Cats</button>
+                <button class="gif-button" data-name="dogs">Dogs</button>
+                <button class="gif-button" data-name="lizards">Lizards</button>
+            </div>
+            <div id="gif-container"></div>
 
-        <!-- animals will Get Dumped Here -->
-        <div id="animals-view"></div>
-    </div>
- 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-        crossorigin="anonymous"></script>
-           <!-- Optional JavaScript -->
-    <script src = "assets/js/app.js"></script>
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+                crossorigin="anonymous"></script>
+            <!-- Optional JavaScript -->
+            <script src="assets/js/app.js"></script>
 </body>
 
 </html>
